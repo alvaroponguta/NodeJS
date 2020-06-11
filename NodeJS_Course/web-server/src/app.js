@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+const { getCountryData } = require('./utils/countriesAPI');
 
 const app = express();
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -39,10 +40,18 @@ app.get('/help/*', (req, res) => {
     });
 });
 
-app.get('/countries', (req, res) => {
-    res.send({
-        country: 'Colombia',
-        capital: 'Bogota'
+app.get('/country', (req, res) => {
+    if (!req.query.countryName) {
+        res.send({
+            error: 'You must provide the name of a country'
+        })
+    }
+
+    getCountryData(req.query.countryName, countryData => {
+        res.send({
+            countryName: req.query.countryName,
+            countryData
+        });
     });
 });
 
