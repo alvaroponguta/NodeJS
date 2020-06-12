@@ -1,6 +1,11 @@
 # NodeJS
 
 Run Budget App:
--npm install
--npm run dev
--npm run start
+-npm i
+-npm run dev (bundle)
+-npm start
+
+Run App:
+-npm i
+-npm run dev (nodemon)
+-npm run
