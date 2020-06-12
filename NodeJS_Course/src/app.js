@@ -4,7 +4,7 @@ const hbs = require('hbs');
 const { getCountryData } = require('./utils/countriesAPI');
 
 const app = express();
-const port = process.env.port || 3000;
+const app_port = process.env.port || 3000;
 
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
@@ -35,26 +35,27 @@ app.get('/help', (req, res) => {
     });
 });
 
-app.get('/help/*', (req, res) => {
-    res.render('404', {
-        title: '404',
-        errorMessage: 'Help article not found'
-    });
-});
+app.get('/country', async (req, res) => {
+    const {countryName} = req.query;
 
-app.get('/country', (req, res) => {
-    if (!req.query.countryName) {
+    if (!countryName) {
         res.send({
             error: 'You must provide the name of a country'
         })
     }
 
-    getCountryData(req.query.countryName, countryData => {
+    try {
+        const countryData = await getCountryData(countryName);
+
         res.send({
-            countryName: req.query.countryName,
             countryData
         });
-    });
+    } catch {
+        res.render('404', {
+            title: '400',
+            errorMessage: 'An error ocurred, please try again'
+        });
+    }
 });
 
 app.get('*', (req, res) => {
@@ -64,6 +65,6 @@ app.get('*', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server is up in port ${port}.`);
+app.listen(app_port, () => {
+    console.log(`Server is up in port ${app_port}.`);
 });

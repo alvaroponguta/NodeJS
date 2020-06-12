@@ -8,16 +8,16 @@ countryForm.addEventListener('submit', e => {
 
     e.preventDefault();
 
-    fetch(`https://restcountries.eu/rest/v2/name/${countryName}`)
+    fetch(`/country?countryName=${countryName}`)
         .then(response => {
             response.json().then(data => {
-                if(data.status !== 404) {
-                    const {name, capital} = data[0];
+                if(data.status === 404) {
+                    capitalHTML.textContent = `Country ${data.message}`;
+                } else {
+                    const {name, capital} = data.countryData;
 
                     countryTitle.textContent = name;
                     capitalHTML.textContent = `Capital: ${capital}`;
-                } else {
-                    capitalHTML.textContent = `Country ${data.message}`;
                 }
             })
         });
