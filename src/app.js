@@ -4,7 +4,7 @@ const hbs = require('hbs');
 const { getCountryData } = require('./utils/countriesAPI');
 
 const app = express();
-const app_port = process.env.port || 3000;
+const app_port = process.env.PORT || 3000;
 
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
