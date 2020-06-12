@@ -1,0 +1,25 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Run Budget App: -npm i -npm dev -npm start Run App: -npm i -npm start",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvaroponguta/nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/alvaroponguta/nodejs/issues"
+  },
+  "homepage": "https://github.com/alvaroponguta/nodejs#readme"
+}
