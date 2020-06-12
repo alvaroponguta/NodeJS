@@ -44,6 +44,7 @@ app.get('/country', async (req, res) => {
         })
     }
 
+    //Axios and handle error
     try {
         const countryData = await getCountryData(countryName);
 
