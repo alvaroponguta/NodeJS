@@ -2,9 +2,10 @@
 
 Run Budget App:
 -npm i
--npm dev
+-npm run dev (bundle)
 -npm start
 
 Run App:
 -npm i
--npm start
+-npm run dev (nodemon)
+-npm run

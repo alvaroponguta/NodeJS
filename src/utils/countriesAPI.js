@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
     timeout: 1000
 });
 
+//Axios
 const getCountryData = async country => {
     const { data } = await axiosInstance.get(`name/${country}`);
     return data[0];
