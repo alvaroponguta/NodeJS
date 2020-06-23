@@ -3,22 +3,21 @@ const search = document.querySelector('input');
 const countryTitle = document.querySelector('#countryID');
 const capitalHTML = document.querySelector('#capitalID');
 
-countryForm.addEventListener('submit', e => {
+countryForm.addEventListener('submit', async e => {
     const countryName = search.value;
 
     e.preventDefault();
 
-    fetch(`/country?countryName=${countryName}`)
-        .then(response => {
-            response.json().then(data => {
-                if(data.status === 404) {
-                    capitalHTML.textContent = `Country ${data.message}`;
-                } else {
-                    const {name, capital} = data.countryData;
+    const response = await fetch(`/country?countryName=${countryName}`);
+    const data = await response.json().catch( _ => {
+        countryTitle.textContent = '';
+        capitalHTML.textContent = 'Country not found, please try again'
+    });
 
-                    countryTitle.textContent = name;
-                    capitalHTML.textContent = `Capital: ${capital}`;
-                }
-            })
-        });
+    if (data) {
+        const {name, capital} = data.countryData;
+
+        countryTitle.textContent = name;
+        capitalHTML.textContent = `Capital: ${capital}`;
+    }
 });

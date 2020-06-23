@@ -4,7 +4,7 @@ const hbs = require('hbs');
 const { getCountryData } = require('./utils/countriesAPI');
 
 const app = express();
-const app_port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
@@ -44,6 +44,7 @@ app.get('/country', async (req, res) => {
         })
     }
 
+    //Axios and handle error
     try {
         const countryData = await getCountryData(countryName);
 
@@ -65,6 +66,6 @@ app.get('*', (req, res) => {
     });
 });
 
-app.listen(app_port, () => {
-    console.log(`Server is up in port ${app_port}.`);
+app.listen(port, () => {
+    console.log(`Server is up in port ${port}.`);
 });

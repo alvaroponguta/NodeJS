@@ -1,10 +1,11 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "Run Budget App: -npm i -npm dev -npm start Run App: -npm i -npm start",
+  "description": "Run Budget App: -npm i -npm run dev (bundle) -npm start Run App: -npm i -npm run dev (nodemon) -npm run",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js,hbs"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/alvaroponguta/nodejs/issues"
   },
-  "homepage": "https://github.com/alvaroponguta/nodejs#readme"
+  "homepage": "https://github.com/alvaroponguta/nodejs#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
